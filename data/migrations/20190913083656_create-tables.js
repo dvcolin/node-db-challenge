@@ -50,7 +50,23 @@ exports.up = function(knex) {
 
   })
   .createTable('project-resources', tbl => {
+    // FOREIGN KEY TO PROJECTS TABLE
+    tbl.integer('project_id')
+    .unsigned()
+    .notNullable()
+    .references('id')
+    .inTable('projects')
+    .onUpdate('CASCADE')
+    .onDelete('CASCADE');
 
+    // FOREIGN KEY TO RESOURCES TABLE
+    tbl.integer('resource_id')
+    .unsigned()
+    .notNullable()
+    .references('id')
+    .inTable('resources')
+    .onUpdate('CASCADE')
+    .onDelete('CASCADE');
   })
 };
 
