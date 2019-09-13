@@ -12,7 +12,7 @@ function getProjects() {
 // GET TASKS FOR SPECIFIC PROJECT
 function getProjectTasks(project_id) {
     return db('projects')
-    .select('tasks.description', 'notes', 'tasks.completed')
+    .select('projects.name', 'projects.project_description', 'tasks.task_description', 'tasks.notes', 'tasks.completed')
     .join('tasks', 'projects.id', '=', 'tasks.project_id')
     .where({ project_id })
     .then(res => {

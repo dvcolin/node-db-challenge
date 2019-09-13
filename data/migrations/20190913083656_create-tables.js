@@ -9,7 +9,7 @@ exports.up = function(knex) {
       tbl.string('name', 255).notNullable();
 
       // PROJECT DESCRIPTION
-      tbl.text('description');
+      tbl.text('project_description');
 
       // PROJECT COMPLETED BOOLEAN
       tbl.boolean('completed').defaultTo(false).notNullable();
@@ -31,7 +31,7 @@ exports.up = function(knex) {
       tbl.increments();
 
       // TASK DESCRIPTION
-      tbl.text('description').notNullable();
+      tbl.text('task_description').notNullable();
 
       // TASK NOTES
       tbl.text('notes');

@@ -18,12 +18,17 @@ router.get('/:id/tasks', (req, res) => {
 
     Projects.getProjectTasks(id)
     .then(tasks => {
-        res.status(200).json(tasks);
+        if (tasks.length) {
+            res.status(200).json(tasks);
+        } else {
+            res.status(404).json({ message: 'A project with that ID could not be found.' })
+        }
     })
     .catch(err => {
         res.status(500).json({ error: 'Error retrieving project tasks from server.' });
     })
 })
+
 
 
 module.exports = router;
