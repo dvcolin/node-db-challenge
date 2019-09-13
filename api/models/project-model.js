@@ -76,16 +76,16 @@ function addTask(project_id, task) {
 
 // GET PROJECT INFO
 
-function getProjectInfo(id) {
-    return db('projects as p')
-    .select()
-    .where({ id })
-    .first()
-    .then(res => {
-        return res;
-    })
+// function getProjectInfo(id) {
+//     return db('projects as p')
+//     .select()
+//     .where({ id })
+//     .first()
+//     .then(res => {
+//         return res;
+//     })
 
-}
+// }
 
 
 module.exports = {
@@ -96,5 +96,5 @@ module.exports = {
   addProject,
   addResource,
   addTask,
-  getProjectInfo
+  // getProjectInfo
 };

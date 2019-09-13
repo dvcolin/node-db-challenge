@@ -16,19 +16,19 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
-    const { id } = req.params;
+// router.get('/:id', (req, res) => {
+//     const { id } = req.params;
 
-    Projects.getProjectInfo(id)
-    .then(project => {
-        project.completed === 0? project.completed = false : project.completed = true;
-        res.status(200).json(project);
-    })
-    .catch(err => {
-        res.status(500).json({ error: 'Error retrieving project from server.' });
-        console.log(err)
-    })
-})
+//     Projects.getProjectInfo(id)
+//     .then(project => {
+//         project.completed === 0? project.completed = false : project.completed = true;
+//         res.status(200).json(project);
+//     })
+//     .catch(err => {
+//         res.status(500).json({ error: 'Error retrieving project from server.' });
+//         console.log(err)
+//     })
+// })
 
 router.get('/:id/tasks', (req, res) => {
     const { id } = req.params;
@@ -56,6 +56,7 @@ router.get('/resources', (req, res) => {
     })
     .catch(err => {
         res.status(500).json({ error: 'Error retrieving resources from server.' });
+        console.log(err)
     })
 })
 
