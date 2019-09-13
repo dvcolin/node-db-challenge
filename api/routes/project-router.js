@@ -1,9 +1,16 @@
 const express = require('express');
-
 const router = express.Router();
 
+const Projects = require('../models/project-model.js');
+
 router.get('/', (req, res) => {
-    res.send('HELLO')
+    Projects.getProjects()
+    .then(projects => {
+        res.status(200).json(projects);
+    })
+    .catch(err => {
+        res.status(500).json({ error: 'Error retrieving projects from server.' });
+    })
 })
 
 
