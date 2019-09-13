@@ -56,4 +56,54 @@ router.get('/:id/resources', (req, res) => {
 })
 
 
+router.post('/', (req, res) => {
+    const projectBody = req.body;
+
+    if (!projectBody.name) {
+        res.status(400).json({ message: 'Please provide a name for the project.' })
+    } else {
+        Projects.addProject(projectBody)
+        .then(added => {
+            res.status(201).json(added);
+        })
+        .catch(err => {
+            res.status(500).json({ error: 'Error adding project to the database.' })
+        })
+    }
+})
+
+router.post('/resources', (req, res) => {
+    const resourceBody = req.body;
+
+    if (!resourceBody.name) {
+        res.status(400).json({ message: 'Please provide a name for the resource.' })
+    } else {
+        Projects.addResource(resourceBody)
+        .then(added => {
+            res.status(201).json(added);
+        })
+        .catch(err => {
+            res.status(500).json({ error: 'Error adding resource to the database.' })
+        })
+    }
+})
+
+router.post('/:id/tasks', (req, res) => {
+    const { id } = req.params;
+    const taskBody = req.body;
+
+    if (!taskBody.task_description) {
+        res.status(400).json({ message: 'Please provide a description and project_id for the task.' })
+    } else {
+        Projects.addTask(id, {...taskBody, project_id: id})
+        .then(added => {
+            res.status(201).json(added);
+        })
+        .catch(err => {
+            res.status(500).json({ error: 'Error adding task to the database.' })
+        })
+    }
+})
+
+
 module.exports = router;
