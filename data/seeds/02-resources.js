@@ -9,6 +9,7 @@ exports.seed = function(knex) {
         {name: 'Mouse', description: 'Not the rodent'},
         {name: 'Garbage bag'},
         {name: 'Legs', description: 'Attached to torso'},
+        {name: 'Arms', description: 'Attached to torso'},
       ]);
     });
 };
