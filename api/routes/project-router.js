@@ -6,6 +6,9 @@ const Projects = require('../models/project-model.js');
 router.get('/', (req, res) => {
     Projects.getProjects()
     .then(projects => {
+        projects.forEach(project => {
+            project.completed === 0? project.completed = false : project.completed = true;
+        })
         res.status(200).json(projects);
     })
     .catch(err => {
@@ -19,6 +22,9 @@ router.get('/:id/tasks', (req, res) => {
     Projects.getProjectTasks(id)
     .then(tasks => {
         if (tasks.length) {
+            tasks.forEach(task => {
+                task.completed === 0? task.completed = false : task.completed = true;
+            })
             res.status(200).json(tasks);
         } else {
             res.status(404).json({ message: 'A project with that ID could not be found.' })
