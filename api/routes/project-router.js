@@ -13,5 +13,17 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/:id/tasks', (req, res) => {
+    const { id } = req.params;
+
+    Projects.getProjectTasks(id)
+    .then(tasks => {
+        res.status(200).json(tasks);
+    })
+    .catch(err => {
+        res.status(500).json({ error: 'Error retrieving project tasks from server.' });
+    })
+})
+
 
 module.exports = router;
