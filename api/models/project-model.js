@@ -74,6 +74,20 @@ function addTask(project_id, task) {
     });
 }
 
+// GET PROJECT INFO
+
+function getProjectInfo(id) {
+    return db('projects as p')
+    .select()
+    .where({ id })
+    .first()
+    .then(res => {
+        return res;
+    })
+
+}
+
+
 module.exports = {
   getProjects,
   getProjectTasks,
@@ -81,5 +95,6 @@ module.exports = {
   getProjectResources,
   addProject,
   addResource,
-  addTask
+  addTask,
+  getProjectInfo
 };
