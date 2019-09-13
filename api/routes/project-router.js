@@ -29,6 +29,31 @@ router.get('/:id/tasks', (req, res) => {
     })
 })
 
+router.get('/resources', (req, res) => {
+    Projects.getResources()
+    .then(resources => {
+        res.status(200).json(resources);
+    })
+    .catch(err => {
+        res.status(500).json({ error: 'Error retrieving resources from server.' });
+    })
+})
+
+router.get('/:id/resources', (req, res) => {
+    const { id } = req.params;
+
+    Projects.getProjectResources(id)
+    .then(resources => {
+        if (resources.length) {
+            res.status(200).json(resources);
+        } else {
+            res.status(404).json({ message: 'A project with that ID could not be found.' })
+        }
+    })
+    .catch(err => {
+        res.status(500).json({ error: 'Error retrieving resources from server.' });
+    })
+})
 
 
 module.exports = router;

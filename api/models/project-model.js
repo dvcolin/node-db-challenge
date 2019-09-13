@@ -20,7 +20,29 @@ function getProjectTasks(project_id) {
     })
 }
 
+// GET RESOURCES
+function getResources() {
+    return db('resources')
+        .select()
+        .then(res => {
+            return res;
+})
+}
+
+// GET RESOURCES
+function getProjectResources(project_id) {
+    return db('resources as r')
+        .select('r.name', 'r.description')
+        .join('project-resources as pr', 'pr.resource_id', '=', 'r.id')
+        .where({ project_id })
+        .then(res => {
+            return res;
+})
+}
+
 module.exports = {
     getProjects,
-    getProjectTasks
+    getProjectTasks,
+    getResources,
+    getProjectResources
 }
